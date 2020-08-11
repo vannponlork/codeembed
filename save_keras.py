@@ -50,9 +50,9 @@ print("="*100)
 print(new_model.output)
 builder = saved_model_builder.SavedModelBuilder(export_path)
 signature = predict_signature_def(inputs={'images': new_model.input},
-outputs={'scores': new_model.output})
+									outputs={'scores': new_model.output})
 with K.get_session() as sess:
-builder.add_meta_graph_and_variables(sess=sess,
-tags=[tag_constants.SERVING],
-signature_def_map={'predict': signature})
-builder.save()
+	builder.add_meta_graph_and_variables(sess=sess,
+										tags=[tag_constants.SERVING],
+										signature_def_map={'predict': signature})
+	builder.save()
